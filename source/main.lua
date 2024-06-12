@@ -29,6 +29,8 @@ local buttonAnimator = gfx.animator.new(1, 200, 200)
 
 local counterSpritesList = {}
 
+local hideCrankAlert = false
+
 local function updateCounter()
     local countStr = tostring(count)
     while #countStr < 4 do
@@ -121,6 +123,9 @@ end)
 setup()
 
 function playdate.update()
+    if playdate.isCrankDocked() == false then
+        hideCrankAlert = true
+    end
     if playdate.buttonJustPressed("a") then
         buttonAnimator = gfx.animator.new(40, 200, 180)
         clickSound:play(1)
@@ -151,7 +156,7 @@ function playdate.update()
     end
 
     gfx.sprite.update()
-    if playdate.isCrankDocked() then
+    if playdate.isCrankDocked() and hideCrankAlert == false then
         playdate.ui.crankIndicator:draw()
     end
     playdate.timer.updateTimers()
