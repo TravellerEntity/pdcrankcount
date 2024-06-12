@@ -6,5 +6,6 @@
     "Lua.diagnostics.globals": [
         "playdate",
         "import"
-    ]
+    ],
+    "playdate.output": "crankcount.pdx"
 }
