@@ -7,5 +7,11 @@
         "playdate",
         "import"
     ],
+    "Lua.runtime.nonstandardSymbol": [
+        "+=",
+        "-=",
+        "*=",
+        "/="
+],
     "playdate.output": "crankcount.pdx"
 }
