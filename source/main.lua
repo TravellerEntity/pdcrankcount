@@ -106,7 +106,7 @@ function playdate.update()
 
     buttonSprite:moveTo(buttonAnimator:currentValue(), 120)
 
-    local ticks = playdate.getCrankTicks(9)
+    local ticks = playdate.getCrankTicks(10)
     if ticks == 1 then
         dialClickSound:play(1)
         count = (count - (count % 1111))
