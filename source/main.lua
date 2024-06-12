@@ -77,6 +77,37 @@ local function setup()
     )
 end
 
+--Changed slightly by me to add the ability to offset the segment positions
+--Otherwise taken directly from the SDK
+local tick_lastCrankReading = nil
+local function getCrankTicks(ticksPerRotation, offset)
+	local totalSegments = ticksPerRotation
+	local degreesPerSegment = 360 / ticksPerRotation
+	
+	local thisCrankReading = playdate.getCrankPosition() + offset
+    if thisCrankReading > 360 then
+        thisCrankReading -= 360
+    end
+	if tick_lastCrankReading == nil then
+		tick_lastCrankReading = thisCrankReading
+	end
+	
+	local difference = thisCrankReading - tick_lastCrankReading
+	if difference > 180 or difference < -180 then
+		if tick_lastCrankReading >= 180 then
+			tick_lastCrankReading -= 360
+		else
+			tick_lastCrankReading += 360
+		end
+	end
+
+	local thisSegment = math.ceil(thisCrankReading / degreesPerSegment)
+	local lastSegment = math.ceil(tick_lastCrankReading / degreesPerSegment)
+	local segmentBoundariesCrossed = thisSegment - lastSegment
+	tick_lastCrankReading = thisCrankReading
+	return segmentBoundariesCrossed	
+end
+
 function playdate.gameWillTerminate()
     local cTbl = {count}
     playdate.datastore.write(cTbl, "count")
@@ -106,7 +137,7 @@ function playdate.update()
 
     buttonSprite:moveTo(buttonAnimator:currentValue(), 120)
 
-    local ticks = playdate.getCrankTicks(10)
+    local ticks = getCrankTicks(3, 180)
     if ticks == 1 then
         dialClickSound:play(1)
         count = (count - (count % 1111))
