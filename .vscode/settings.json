@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.disable": [
+        "need-check-nil",
+        "undefined-field"
+    ],
+    "Lua.diagnostics.globals": [
+        "playdate",
+        "import"
+    ]
+}
