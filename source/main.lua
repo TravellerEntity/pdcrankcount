@@ -120,6 +120,11 @@ playdate.getSystemMenu():addMenuItem("Reset", function()
     updateCounter()
 end)
 
+playdate.getSystemMenu():addCheckmarkMenuItem("Stay awake", function(val)
+    playdate.setAutoLockDisabled(val)
+    print(val)
+end)
+
 setup()
 
 function playdate.update()

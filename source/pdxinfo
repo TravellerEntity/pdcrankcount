@@ -3,6 +3,6 @@ author=TravellerEntity
 description=Count things on your Playdate
 bundleID=com.travellerentity.crankcount
 version=1.0
-buildNumber=2
+buildNumber=3
 imagePath=assets/launcher
 launchSoundPath=assets/launcher/launch
