@@ -1,10 +1,10 @@
 name=Crank Counter
 author=TravellerEntity
 description=Count things on your Playdate
-bundleID=com.travellerentity.crankcount
+bundleID=codes.entity.crankcount
 version=1.0
 buildNumber=3
 imagePath=assets/launcher
 launchSoundPath=assets/launcher/launch
 pdxversion=20500
-buildtime=772237890
+buildtime=772239282
